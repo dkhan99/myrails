@@ -1,0 +1,58 @@
+<div class="row">
+	<!-- <h3 style="display:inline-block;">Logged in as <%= current_user.name %></h3> -->
+	
+	<a style="float:right" href="/sessions/<%=session[:user_id]%>" data-method="delete">Logout</a>
+
+	<a style="float:right" href="/ideas" >Bright Ideas&nbsp;&nbsp;|</a>
+
+</div>
+
+
+<div class="row">
+		<h4 >
+		 <a href="/users/<%= @idea.user.id %>"><%= @idea.user.name %> </a>
+		 
+		 says: 
+		 <p style="border: 1px solid black; display:block; margin-left: 20px;"> <%= @idea.content %> </p>
+		 </h4>
+
+		<!--  <a href="/likes/<%= @idea.id %>" data-method='post' style="margin-left: 30px;">Like</a>
+		 
+		 <a href="/ideas/<%= @idea.id %>" style="margin-left: 30px;"><%= @idea.likes.count(:all) %> people</a> like this. -->
+
+
+</div>
+
+<div class="row">
+
+	<% if @idea.likes.count(:all)>0 %>
+		<h6>People who liked this post</h6>
+		<table class="table-striped table-bordered">
+			<tr>
+				<th>Alias</th>
+				<th>Name</th>
+				
+			</tr>
+			<% @idea.likes.each do |like| %>
+				<tr>
+					<td >
+					<a href="/users/<%= like.user.id %>"><%= like.user.alias %> </a>
+					
+					<td><%= like.user.name %></td>
+					
+				</tr>
+			<% end %>
+		</table>
+
+	<% else %>
+		<h6>No Likes Yet!</h6>
+	<% end %>
+
+
+</div>
+
+
+
+
+
+

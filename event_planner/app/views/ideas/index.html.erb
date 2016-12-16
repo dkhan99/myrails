@@ -1,0 +1,58 @@
+
+
+
+<div class="row">
+	<h3 style="display:inline-block;">Hi <%= current_user.name %></h3>
+	
+	<a style="float:right" href="/sessions/<%=session[:user_id]%>" data-method="delete">Logout</a>
+
+	<!-- <a style="float:right" href="/users/<%=session[:user_id]%>/edit" >Edit my profile&nbsp;&nbsp;|</a> -->
+
+</div>
+
+
+<div class="row">
+	
+	<form action="/ideas" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+
+		<div>
+			<label>
+				<textarea name="idea[content]" placeholder="Post something witty here" rows="1" cols="40"></textarea>
+				
+			</label>
+			<input type="submit" name="add_idea" value="Idea!">
+		</div>
+		
+	</form>
+</div>
+
+<% @ideas.each do |idea| %>
+	<div class="row">
+		<h6 >
+		 <a href="/users/<%= idea.user.id %>"><%= idea.user.alias %> </a>
+		 
+		 says: 
+		 <p style="border: 1px solid black; display:block; margin-left: 20px;"> <%= idea.content %> </p>
+		 </h6>
+
+		 <% if idea.users.include?(current_user) %>
+						<span style="margin-left: 30px;">Liked!</span>
+						
+			
+		<% else %>
+						<a href="/likes/<%= idea.id %>" data-method='post' style="margin-left: 30px;">Like</a>
+
+		<% end %>
+
+		 <a href="/ideas/<%= idea.id %>" style="margin-left: 30px;"><%= idea.likes.count(:all) %> people</a> like this.
+
+
+					
+		 
+
+	</div>
+<% end %>
+
+
+

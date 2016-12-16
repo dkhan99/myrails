@@ -1,0 +1,16 @@
+<div class="row">
+	<h3 style="display:inline-block;">Hi <%= current_user.name %></h3>
+	
+	<a style="float:right" href="/sessions/<%=session[:user_id]%>" data-method="delete">Logout</a>
+
+	<a style="float:right" href="/ideas" >Bright Ideas&nbsp;&nbsp;|</a>
+
+</div>
+
+
+<h4><%= @user.name %></h4>
+<h4><%= @user.alias %></h4>
+<h4><%= @user.email %></h4>
+ <hr>
+ <h5>Total number of Posts: <%= @user.ideas.count(:all) %></h5>
+ <h5>Total number of Likes: <%= @user.likes.count(:all) %></h5>
