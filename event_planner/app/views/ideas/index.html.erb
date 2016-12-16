@@ -27,7 +27,7 @@
 	</form>
 </div>
 
-<% @ideas.each do |idea| %>
+<% @ideas.sort { |a,b| b.likes(Idea).count <=> a.likes(Idea).count }.each do |idea| %>
 	<div class="row">
 		<h6 >
 		 <a href="/users/<%= idea.user.id %>"><%= idea.user.alias %> </a>
