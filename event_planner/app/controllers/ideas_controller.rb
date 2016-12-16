@@ -1,7 +1,7 @@
 class IdeasController < ApplicationController
   def index
-  	# @ideas = Idea.all.includes(:likes, :users, :user)
-  	@ideas = Idea.all.includes(:likes, :users, :user).order("count(likes.id) DESC")
+  	@ideas = Idea.all.includes(:likes, :users, :user)
+  	# @ideas = Idea.all.includes(:likes, :users, :user).order("count(likes.id) DESC")
   	
   end
 
