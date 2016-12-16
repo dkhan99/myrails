@@ -9,7 +9,11 @@ class IdeasController < ApplicationController
   	@idea = Idea.find(params[:id])
   end
 
-
+def destroy
+		Idea.find(params[:id]).destroy
+		redirect_to '/ideas'
+	end
+	
   def create
 		idea = Idea.new(
 		  idea_params.merge({

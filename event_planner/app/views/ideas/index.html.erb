@@ -47,6 +47,13 @@
 
 		 <a href="/ideas/<%= idea.id %>" style="margin-left: 30px;"><%= idea.likes.count(:all) %> people</a> like this.
 
+		<% if idea.user == (current_user) %>
+		
+						
+						<h6> <a href="/ideas/<%= idea.id %>" data-method='delete'>Delete Idea</a></h6>
+
+		<% end %>
+
 
 					
 		 
