@@ -19,7 +19,6 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  username: ubuntu
   pool: 5
 
 development:
@@ -82,5 +81,5 @@ test:
 production:
   <<: *default
   database: event_planner_production
-  username: ubuntu
+  username: event_planner
   password: <%= ENV['EVENT_PLANNER_DATABASE_PASSWORD'] %>
